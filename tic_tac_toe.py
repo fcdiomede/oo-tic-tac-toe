@@ -33,15 +33,17 @@ class Game():
 
     def check_win(self, board, mark):
 
-        for row in board.board_state:
-            if row[1] == row[2] == row[3] == mark:
-                return True
 
-        for col in range(1,4):
-            if (board.board_state[1][col] == 
-                board.board_state[2][col] ==
-                board.board_state[3][col] ==
+        for index in range(1,4):
+            if (board.board_state[1][index] == 
+                board.board_state[2][index] ==
+                board.board_state[3][index] ==
                 mark):
+                return True
+            elif (board.board_state[index][1] == 
+                  board.board_state[index][2] ==
+                  board.board_state[index][3] ==
+                  mark):
                 return True
 
         return False
