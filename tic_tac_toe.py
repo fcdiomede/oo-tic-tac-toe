@@ -130,6 +130,10 @@ while playing:
     pos = pos.split(",")
     pos = [int(pos[0]), int(pos[1])]
 
+    if my_board.board_state[pos[0]][pos[1]] != "-":
+        print("hm, that spot is taken. Try again.")
+        continue
+
     player_move = Move(player, pos)
 
     my_board.add_move(player_move)
