@@ -33,8 +33,8 @@ class Game():
 
     def check_win(self, board):
 
-        for row in board:
-            if row[0] == row[1] == row[2]:
+        for row in board.board_state:
+            if row[1] == row[2] == row[3] == "X":
                 return True
         return False
 
@@ -100,6 +100,10 @@ while playing:
     player_move = Move(player, pos)
 
     my_board.add_move(player_move)
+
+    if my_game.check_win(my_board):
+        print(f'{player.name} wins!')
+        playing = False
 
 
     #swtich to the next player
