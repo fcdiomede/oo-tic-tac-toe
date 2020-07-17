@@ -31,11 +31,19 @@ class Game():
         self.p1 = p1
         self.p2 = p2
 
-    def check_win(self, board):
+    def check_win(self, board, mark):
 
         for row in board.board_state:
-            if row[1] == row[2] == row[3] == "X":
+            if row[1] == row[2] == row[3] == mark:
                 return True
+
+        for col in range(1,4):
+            if (board.board_state[1][col] == 
+                board.board_state[2][col] ==
+                board.board_state[3][col] ==
+                mark):
+                return True
+
         return False
 
 #============START GAME===========================
@@ -101,7 +109,7 @@ while playing:
 
     my_board.add_move(player_move)
 
-    if my_game.check_win(my_board):
+    if my_game.check_win(my_board, player.game_piece):
         print(f'{player.name} wins!')
         playing = False
 
