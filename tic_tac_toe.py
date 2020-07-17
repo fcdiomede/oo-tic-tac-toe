@@ -35,18 +35,41 @@ class Game():
 
 
         for index in range(1,4):
+            #check rowa
             if (board.board_state[1][index] == 
                 board.board_state[2][index] ==
                 board.board_state[3][index] ==
                 mark):
                 return True
+            #check cols
             elif (board.board_state[index][1] == 
                   board.board_state[index][2] ==
                   board.board_state[index][3] ==
                   mark):
                 return True
 
+        #check diagonals
+        if (
+            (board.board_state[1][1] == 
+            board.board_state[2][2] ==
+            board.board_state[3][3] ==
+            mark) 
+            or
+            (board.board_state[1][3] == 
+            board.board_state[2][2] ==
+            board.board_state[3][1] ==
+            mark)
+            ):
+            return True
+
         return False
+
+    def check_stalemate(self,board):
+        for row in board.board_state:
+            if "-" in row:
+                return False
+
+        return True
 
 #============START GAME===========================
 
@@ -113,6 +136,9 @@ while playing:
 
     if my_game.check_win(my_board, player.game_piece):
         print(f'{player.name} wins!')
+        playing = False
+    elif my_game.check_stalemate(my_board):
+        print('No one is a winner today :(')
         playing = False
 
 
